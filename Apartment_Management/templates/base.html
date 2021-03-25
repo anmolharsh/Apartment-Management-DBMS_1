@@ -28,14 +28,23 @@
 
 				{% if user.is_authenticated %}
 						{% if user.is_superuser%}
-						 <a class="nav-item nav-link" href="/">Inventory</a>
+						 <a class="nav-item nav-link" href="{% url 'home' %}">NoticeBoard</a>
 							<a class="nav-link" href="">Leave Requests<span class="sr-only">(current)</span></a>
 							<a class="nav-item nav-link" href="{% url 'home'%}">History</a>
-							<a class="nav-item nav-link" href="{% url 'home'%}">Add Employee</a>
+							<li class="nav-item dropdown">
+							 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								 Add User
+							 </a>
+							 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+								 <a class="dropdown-item" href="{% url 'accounts:signup_resident' %}">Resident</a>
+								 <div class="dropdown-divider"></div>
+								 <a class="dropdown-item" href="{% url 'accounts:signup_watchmen' %}">Watchmen</a>
+							 </div>
+						 	</li>
 
 
 						{% elif user.profile.type == 'D' %}
-						 <a class="nav-item nav-link" href="{% url 'store' %}">Products</a>
+						 	<a class="nav-item nav-link" href="{% url 'home' %}">NoticeBoard</a>
 							<li class="nav-item dropdown">
 							 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 								 Leave
@@ -45,12 +54,12 @@
 								 <div class="dropdown-divider"></div>
 								 <a class="dropdown-item" href="{% url 'home'%}">View</a>
 							 </div>
-						 </li>
+						 	</li>
 
 
            				{% else %}
-					 		 <a class="nav-item nav-link" href="{% url 'store' %}">Products</a>
-							 <a class="nav-item nav-link" href="{% url 'orders:order_list'%}">History</a>
+					 		 <a class="nav-item nav-link" href="{% url 'home' %}">NoticeBoard</a>
+							 <a class="nav-item nav-link" href="{% url 'home'%}">History</a>
 
 					 {% endif %}
 				{% else %}
@@ -66,11 +75,11 @@
 							<a href="{% url 'accounts:login_user' %}">
 									<button class="btn btn-outline-success my-2 my-sm-0" type="button">Log In</button>
 							</a>
-							<a href="{% url 'accounts:signup_customer' %}">
+							<!-- <a href="{% url 'accounts:signup_resident' %}">
 									<button class="btn btn-outline-success my-2 my-sm-0 ml-2" type="button" >
 											Sign Up
 									</button>
-							</a>
+							</a> -->
 					{% else %}
 					<div class="navbar-nav">
 
@@ -90,7 +99,7 @@
 								 {{ user.username }}
 							 </a>
 							 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-								 <a class="dropdown-item" href="" >profile</a>
+								 <a class="dropdown-item" href="{% url 'accounts:profile' %}" >profile</a>
 								 <div class="dropdown-divider"></div>
 								 <a class="dropdown-item" href="{% url 'accounts:logout_user' %}">
 										<button class="btn btn-outline-success my-2 my-sm-0" type="button">Logout</button></a>
