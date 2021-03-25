@@ -3,9 +3,9 @@
 {%block content%}
 <div class="content-section">
   <div class="media">
-    <img class="rounded-circle account-img" src="{{user.customer.image.url}}" width = "118" height = "118">
+    <img class="rounded-circle account-img" src="{{user.resident.image.url}}" width = "118" height = "118">
     <div class="media-body">
-      <h2 class="account-heading">{{ user.customer.name }}</h2>
+      <h2 class="account-heading">{{ user.resident.name }}</h2>
       <p class="text-secondary">{{user.email}}</p>
       <a class="detail-edit" href="{% url 'accounts:edit_details' %}">Edit Profile</a>
     </div>
