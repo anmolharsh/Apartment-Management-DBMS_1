@@ -10,6 +10,10 @@
   </head>
   <body>
     <h1>COMPLAINTS</h1>
+    <div  id = "lodge_complaint_button">
+       <button class="btn btn-outline-success my-2 my-sm-0"><a href="{% url 'complaints:lodge_complaint' user_id %}">Lodge Complaint</a>
+       </button>
+    </div>
     <table class = 'table table-bordered table-hover' style="width:100%">
     	<thead class="thead-dark">
       	<tr>
@@ -17,16 +21,17 @@
       	   	<th>{{ header }}</th>
       		{% endfor %}
       	</tr>
-      	</thead>
+      </thead>
+      {% for complaint in complaints_list %}
       <tr>
-      	{% for complaint in complaints_list %}
-      	   <td>{{ complaint.complaint_id }}</td>
-      	   <td>{{ complaint.get_status_display }}</td>
-      	   <td>{{ complaint.content }}</td>
-      	   <td>{{ complaint.date }}</td>
-      	   <td>{{ complaint.comments }}</td>
-      	{% endfor %}
+         <td>{{ complaint.complaint_id }}</td>
+         <td>{{ complaint.user_id }}</td>
+         <td>{{ complaint.get_status_display }}</td>
+         <td>{{ complaint.content }}</td>
+         <td>{{ complaint.date }}</td>
+         <td>{{ complaint.comments }}</td>
       </tr>
+      {% endfor %}
     </table>
   </body>
 </html>
