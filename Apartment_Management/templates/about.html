@@ -2,13 +2,19 @@
 {% load static %}
 {% block content %}
 <html>
+<style>
+body { background-color: ##ffffff;
+	    background-image: url(/static/about.jpeg);
+	    height: 100%;
+	    background-position: center;
+	    background-repeat: no-repeat;
+	    
+	    color: #fff;
+	 }
+</style>
     <head>
         <meta charset="utf-8">
         <title>About</title>
     </head>
-    <body>
-        <h1>About Us</h1>
-        <p>We like django.</p>
-    </body>
 </html>
 {% endblock %}
