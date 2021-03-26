@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required
 from PIL import Image
 from django.core.files.base import ContentFile
 
-
+#resident:p
 def signup_resident(request):
 
     if request.user.is_authenticated and not request.user.is_superuser:
@@ -34,15 +34,16 @@ def signup_resident(request):
                 'user_form': user_form,
                 'details_form': details_form
             }
-            return render(request,'accounts/signup_resident_view.html',context)
+            return render(request,'accounts/signup.html',context)
 
     user_form = UserRegisterForm()
     details_form = ResidentSignup()
     context = {
         'user_form': user_form,
-        'details_form': details_form
+        'details_form': details_form,
+        'flag': 1
     }
-    return render(request,'accounts/signup_resident_view.html',context)
+    return render(request,'accounts/signup.html',context)
 
 def signup_watchmen(request):
     if  request.user.is_authenticated and not request.user.is_superuser :
@@ -71,9 +72,10 @@ def signup_watchmen(request):
         else:
             context = {
                 'user_form': user_form,
-                'details_form': details_form
+                'details_form': details_form,
+                'flag':0
             }
-            return render(request,'accounts/signup_watchmen_view.html',context)
+            return render(request,'accounts/signup.html',context)
 
     user_form = UserRegisterForm()
     details_form = WatchmenSignup()
@@ -81,7 +83,7 @@ def signup_watchmen(request):
         'user_form': user_form,
         'details_form': details_form
     }
-    return render(request,'accounts/signup_watchmen_view.html',context)
+    return render(request,'accounts/signup.html',context)
 
 def login_view(request):
     if request.user.is_authenticated:
@@ -117,7 +119,7 @@ def profile(request):
                 'user_form': user_form,
                 'pic_form': pic_form
             }
-            return render(request, 'accounts/profile_serv.html', context)
+            return render(request, 'accounts/profile.html', context)
 
         else:
             user_form = user_update(request.POST, instance=request.user)
@@ -134,7 +136,7 @@ def profile(request):
                 'user_form': user_form,
                 'pic_form': pic_form
             }
-            return render(request, 'accounts/profile_res.html', context)
+            return render(request, 'accounts/profile.html', context)
 
     else:
         if request.user.profile.type == 'D':
@@ -145,7 +147,7 @@ def profile(request):
                 'user_form': user_form,
                 'pic_form': pic_form
             }
-            return render(request, 'accounts/profile_serv.html', context)
+            return render(request, 'accounts/profile.html', context)
 
         else:
             user_form = user_update(instance = request.user)
@@ -155,7 +157,7 @@ def profile(request):
                 'user_form': user_form,
                 'pic_form': pic_form
             }
-            return render(request, 'accounts/profile_res.html', context)
+            return render(request, 'accounts/profile.html', context)
 
 @login_required(login_url="/login_user/")
 def edit_details(request):
@@ -168,7 +170,7 @@ def edit_details(request):
                 messages.success(request, f'Details Updated')
                 return redirect('accounts:profile')
 
-            return render(request,'accounts/edit_details_serv.html',{'form':form})
+            return render(request,'accounts/edit_details.html',{'form':form})
 
         else:
             form = edit_detail_res(request.POST,instance=request.user.resident)
@@ -178,15 +180,15 @@ def edit_details(request):
                 messages.success(request, f'Details Updated')
                 return redirect('accounts:profile')
 
-            return render(request,'accounts/edit_details_res.html',{'form':form})
+            return render(request,'accounts/edit_details.html',{'form':form})
 
     else:
         if request.user.profile.type == 'D':
             form = edit_detail_serv(instance = request.user.watchmen)
-            return render(request,'accounts/edit_details_serv.html',{'form':form})
+            return render(request,'accounts/edit_details.html',{'form':form})
         else:
             form = edit_detail_res(instance= request.user.resident)
-            return render(request,'accounts/edit_details_res.html',{'form':form})
+            return render(request,'accounts/edit_details.html',{'form':form})
 
 
 def signup(request):

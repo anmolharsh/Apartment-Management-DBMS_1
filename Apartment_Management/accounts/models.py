@@ -1,5 +1,5 @@
 from django.db import models
-from phone_field import PhoneField
+from phonenumber_field.modelfields import PhoneNumberField
 from django.contrib.auth.models import User
 #from orders.models import Order
 #from leave.models import leave_request
@@ -11,8 +11,9 @@ gender_choices =(
     )
 
 class Resident(models.Model):
-    name = models.CharField(max_length=80,default="Guest")
-    age = models.IntegerField()
+    age = models.IntegerField(blank=True,null=True)
+    phone = PhoneNumberField(blank=True, help_text='Contact phone number')
+    gender = models.CharField(max_length = 1,blank=True,choices = gender_choices)
     user = models.OneToOneField(User,on_delete=models.CASCADE)
     image = models.ImageField(default='def_M.jpg', upload_to = 'profile_pics')
 
@@ -28,11 +29,10 @@ class Resident(models.Model):
             img.save(self.image.path)
 
 class Watchmen(models.Model):
-    name = models.CharField(max_length=80)
-    phone = PhoneField(blank=True, help_text='Contact phone number') #update
-    age = models.IntegerField()
+    age = models.IntegerField(blank=True,null=True)
     gender = models.CharField(max_length = 1,blank=True,choices = gender_choices)
     address = models.CharField(max_length=150,blank=True) #update
+    phone = PhoneNumberField(blank=True, help_text='Contact phone number') #update
     image = models.ImageField(default='def_M.jpg',blank=True, upload_to = 'profile_pics')
     user = models.OneToOneField(User,on_delete=models.CASCADE)
     #leave_requests =models.ManyToManyField(leave_request,related_name="leave")

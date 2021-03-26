@@ -1,7 +1,7 @@
 {% load static %}
 <html>
 <head>
-	<title>Shop</title>
+	<title>AMS</title>
 
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1" />
 
@@ -28,8 +28,8 @@
 
 				{% if user.is_authenticated %}
 						{% if user.is_superuser%}
-						 <a class="nav-item nav-link" href="{% url 'home' %}">NoticeBoard</a>
-							<a class="nav-link" href="">Leave Requests<span class="sr-only">(current)</span></a>
+						 	<a class="nav-item nav-link" href="{% url 'home' %}">NoticeBoard</a>
+							<a class="nav-link nav-link" href="">Leave Requests</a>
 							<a class="nav-item nav-link" href="{% url 'home'%}">Complaints</a>
 							<li class="nav-item dropdown">
 							 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
