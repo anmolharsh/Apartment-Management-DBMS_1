@@ -34,7 +34,7 @@ class lodge_complaint_view(FormView) :
 	
 	def dispatch(self, request, *args, **kwargs) :
 		self.success_url = reverse_lazy('complaints:complaints_display',kwargs = {'user_id' : kwargs['user_id']})
-		self.user = Resident.objects.get(id__exact = kwargs['user_id'])
+		self.user = Resident.objects.get(user__exact = kwargs['user_id'])
 		return super().dispatch(request,args,kwargs)
 
 	def get_context_data(self, **kwargs):

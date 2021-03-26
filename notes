@@ -3,7 +3,7 @@ mkdir djangoenv
 python3 -m venv djangoenv 
 source djangoenv/bin/activate
   
- pip install django django-phone-field image django-crispy-forms django-autofixture django-extensions 
+ pip install django django-phonenumber-field phonenumbers image django-crispy-forms django-autofixture django-extensions 
  django-admin startproject Apartment_Management
 
 //sudo apt install python3-dev libmysqlclient-dev default-libmysqlclient-dev
