@@ -14,7 +14,7 @@ class Resident(models.Model):
     age = models.IntegerField(blank=True,null=True)
     phone = PhoneNumberField(blank=True, help_text='Contact phone number')
     gender = models.CharField(max_length = 1,blank=True,choices = gender_choices)
-    user = models.OneToOneField(User,on_delete=models.CASCADE)
+    user = models.OneToOneField(User, primary_key=True,on_delete=models.CASCADE)
     image = models.ImageField(default='def_M.jpg', upload_to = 'profile_pics')
 
     def __str__(self):
@@ -34,7 +34,7 @@ class Watchmen(models.Model):
     address = models.CharField(max_length=150,blank=True) #update
     phone = PhoneNumberField(blank=True, help_text='Contact phone number') #update
     image = models.ImageField(default='def_M.jpg',blank=True, upload_to = 'profile_pics')
-    user = models.OneToOneField(User,on_delete=models.CASCADE)
+    user = models.OneToOneField(User,primary_key=True,on_delete=models.CASCADE)
     #leave_requests =models.ManyToManyField(leave_request,related_name="leave")
 
     def __str__(self):
@@ -50,7 +50,7 @@ class Watchmen(models.Model):
 
 
 class Profile(models.Model):
-    user = models.OneToOneField(User,on_delete=models.CASCADE)
+    user = models.OneToOneField(User,primary_key=True,on_delete=models.CASCADE)
     type = models.CharField(max_length=1,default='A')
 
     def __str__(self):
