@@ -6,29 +6,25 @@
   <head>
   	<link rel="stylesheet" href="{% static 'table.css' %}">	
     <meta charset="utf-8">
-    <title>My test page</title>
   </head>
   <body>
-    <h1>COMPLAINTS</h1>
     <div  id = "lodge_complaint_button">
-       <button class="btn btn-outline-success my-2 my-sm-0"><a href="{% url 'complaints:lodge_complaint' user_id %}">Lodge Complaint</a>
+       <button class="btn btn-outline-success my-2 my-sm-0"><a href="/view/">View Main</a>
        </button>
     </div>
-    <table class = 'table table-bordered table-hover' style="width:100%">
-    	<thead class="thead-dark">
-      	<tr>
-      		{% for header in column_headers %}
-      	   	<th>{{ header }}</th>
-      		{% endfor %}
-      	</tr>
-      </thead>
-      {% for complaint in service_directory_model %}
-      <tr>
-         <td>{{ complaint.name }}</td>
-         <td>{{ complaint.profession }}</td>
-      </tr>
+
+    <h1>SERVICE DIRECTORY</h1>
+        {% for complaint in flat_model %}
+        <article class="media content-section">
+        <img class = "rounded-circle article-img"src = "{{ image_url }}">
+        <div class="media-body">
+          <div class="article-metadata">
+            <medium class="text-primary"><b>Name</b> : {{ complaint.name }}</br></medium>
+            <medium class="text-muted"><b>Profession</b> : {{ complaint.profession }}</br></medium>
+          </div>
+        </div>
+        </article>
       {% endfor %}
-    </table>
   </body>
 </html>
 {% endblock %}

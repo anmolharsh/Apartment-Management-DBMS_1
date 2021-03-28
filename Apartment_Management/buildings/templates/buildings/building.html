@@ -8,22 +8,20 @@
     <meta charset="utf-8">
   </head>
   <body>
-
-    <h1>FLATS</h1>
     <div  id = "lodge_complaint_button">
        <button class="btn btn-outline-success my-2 my-sm-0"><a href="/view/">View Main</a>
        </button>
     </div>
+
+    <h1>BUILDING DETAILS</h1>
         {% for complaint in flat_model %}
         <article class="media content-section">
         <img class = "rounded-circle article-img"src = "{{ image_url }}">
         <div class="media-body">
           <div class="article-metadata">
-            <medium class="text-primary"><b>Flat No</b> : {{ complaint.flat_no }}</br></medium>
-            <medium class="text-muted"><b>Flat Type</b> : {{ complaint.flat_type }}</br></medium>
-            <medium class="text-muted"><b>Flat Area</b> : {{ complaint.flat_area }}</br></medium>
-            <medium class="text-muted"><b>Vaccancy</b> : {{ complaint.vaccancy }}</br></medium>
-            <medium class="text-muted"><b>Flat ID</b> : {{ complaint.flat_id }}</br></medium>
+            <medium class="text-primary"><b>Building Name</b> : {{ complaint.building_name }}</br></medium>
+            <medium class="text-muted"><b>No. of Floors</b> : {{ complaint.n_floors }}</br></medium>
+            <medium class="text-muted"><b>No. of Flats</b> : {{ complaint.n_flats }}</br></medium>
           </div>
         </div>
         </article>

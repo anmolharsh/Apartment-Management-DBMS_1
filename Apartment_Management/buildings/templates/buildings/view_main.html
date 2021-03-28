@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+  <head>
+  	<link rel="stylesheet" href="{% static 'table.css' %}">	
+    <meta charset="utf-8">
+  </head>
+  <body>
+
+    <h1>APARTMENT DETAILS</h1>
+    <div  id = "lodge_complaint_button">
+       <button class="btn btn-outline-success my-2 my-sm-0"><a href="/view/flat/">View Flats</a>
+       </button>
+    </div>
+    <div  id = "lodge_complaint_button">
+       <button class="btn btn-outline-success my-2 my-sm-0"><a href="/view/building/">View Buildings</a>
+       </button>
+    </div>
+    <div  id = "lodge_complaint_button">
+       <button class="btn btn-outline-success my-2 my-sm-0"><a href="/view/service_directory/">View Service Directory</a>
+       </button>
+    </div>
+  </body>
+</html>
+{% endblock %}
