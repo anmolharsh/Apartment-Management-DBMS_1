@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+  <head>
+  	<link rel="stylesheet" href="{% static 'admin-complaint.css' %}">	
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <h1>Bookings</h1>
+    <div  id = "create_booking button">
+       <button class="btn btn-outline-success my-2 my-sm-0"><a href="{% url 'bookings:create_booking' %}">New Booking</a>
+       </button>
+    </div>
+        {% for booking in bookings_list %}
+        <article class="media content-section">
+        <img class = "rounded-circle article-img"src = "{{ image_url }}">
+        <div class="media-body">
+          <div class="article-metadata">
+            <medium class="text-muted"><b>Booking-ID</b> : {{ booking.booking_id }}</br></medium>
+            <medium class="text-muted"><b>Facility</b> : {{ booking.get_facility_display }}</br></medium>
+            <medium class="text-muted"><b>Status</b> : {{ booking.get_status_display }}</br></medium>
+            <medium class="text-muted"><b>Check-in Time</b> : {{ booking.check_in }}</br></medium>
+            <medium class="text-muted"><b>Duration</b> : {{ booking.duration }}</br></medium>
+          </div>
+        </div>
+        </article>
+      {% endfor %}
+  </body>
+</html>
+{% endblock %}
