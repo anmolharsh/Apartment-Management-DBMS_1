@@ -1,36 +1,33 @@
-<!-- {% extends 'base.html' %} -->
-<!-- {% load static %} -->
-<!-- {% block content %} -->
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
 <!DOCTYPE html>
 <html>
   <head>
-  	<!-- <link rel="stylesheet" href="{% static 'table.css' %}">	 -->
-    <!-- <meta charset="utf-8"> -->
-    <title>My test page</title>
+  	<link rel="stylesheet" href="{% static 'table.css' %}">	
+    <meta charset="utf-8">
   </head>
   <body>
-    <!-- <h1>COMPLAINT/S</h1> -->
-    <!-- <div  id = "lodge_complaint_button"> -->
-       <!-- <button class="btn btn-outline-success my-2 my-sm-0"><a href="{% url 'buildings:flat_details'% }">Lodge Complaint</a> -->
-       <!-- </button>
+
+    <h1>COMPLAINTS</h1>
+    <div  id = "lodge_complaint_button">
+       <button class="btn btn-outline-success my-2 my-sm-0"><a href="{% url 'buildings:flat_details'% }">Lodge Complaint</a>
+       </button>
     </div>
-    <table class = 'table table-bordered table-hover' style="width:100%">
-    	<thead class="thead-dark">
-      	<tr>
-      		{% for header in column_headers %}
-      	   	<th>{{ header }}</th>
-      		{% endfor %}
-      	</tr>
-      </thead>
-      {% for complaint in flat_model %}
-      <tr>
-         <td>{{ complaint.flat_no }}</td>
-         <td>{{ complaint.flat_type }}</td>
-         <td>{{ complaint.flat_area }}</td>
-      </tr>
+        {% for complaint in flat_model %}
+        <article class="media content-section">
+        <img class = "rounded-circle article-img"src = "{{ image_url }}">
+        <div class="media-body">
+          <div class="article-metadata">
+            <medium class="text-primary"><b>Flat No</b> : {{ complaint.flat_no }}</br></medium>
+            <medium class="text-muted"><b>Flat Type</b> : {{ complaint.flat_type }}</br></medium>
+            <medium class="text-muted"><b>Flat Area</b> : {{ complaint.flat_area }}</br></medium>
+            <medium class="text-muted"><b>Vaccancy</b> : {{ complaint.vaccancy }}</br></medium>
+            <medium class="text-muted"><b>Flat ID</b> : {{ complaint.flat_id }}</br></medium>
+          </div>
+        </div>
+        </article>
       {% endfor %}
-    </table>
--->
-  </body> 
+  </body>
 </html>
-<!-- {% endblock %}
+{% endblock %}
