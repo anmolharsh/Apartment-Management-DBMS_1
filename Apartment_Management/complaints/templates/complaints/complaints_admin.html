@@ -4,26 +4,33 @@
 <!DOCTYPE html>
 <html>
   <head>
-  	<link rel="stylesheet" href="{% static 'table.css' %}">	
+  	<link rel="stylesheet">	
     <meta charset="utf-8">
   </head>
   <body>
-
     <h1>COMPLAINTS</h1>
-    <div  id = "lodge_complaint_button">
-       <button class="btn btn-outline-success my-2 my-sm-0"><a href="{% url 'complaints:lodge_complaint' %}">Lodge Complaint</a>
-       </button>
-    </div>
-        {% for complaint in complaints_list %}
+        {% for name, image_url, complaint in values %}
         <article class="media content-section">
         <img class = "rounded-circle article-img"src = "{{ image_url }}">
         <div class="media-body">
           <div class="article-metadata">
+            <medium class="text-muted"><b>Name</b> : {{ name }}</br></medium>
             <medium class="text-muted"><b>Complaint-ID</b> : {{ complaint.complaint_id }}</br></medium>
             <medium class="text-muted"><b>Status</b> : {{ complaint.get_status_display }}</br></medium>
             <medium class="text-muted"><b>Date & Time</b> : {{ complaint.date }}</br></medium>
             <medium class="text-muted"><b>Content</b> : {{ complaint.content }}</br></medium>
             <medium class="text-muted"><b>Comments</b> : {{ complaint.comments }}</br></medium>
+            <form class="form-inline my-2 my-lg-3" method = "post" action="{% url 'complaints:admin-complaint' %}">
+             <input type="radio" id="progress" name="status" value="PRG">
+            <label for="progress">In Progress</label><br>
+            <input type="radio" id="completed" name="status" value="CMP">
+            <label for="completed">Completed</label><br>
+            {% csrf_token %}
+            <input class="form-control mr-sm-2" type="comments" placeholder="" aria-label="comments" name="comments">
+            <input type = "hidden" name = "complaint_id" value = "{{ complaint.complaint_id }}">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Edit Comments</button>
+            
+        </form>
           </div>
         </div>
         </article>

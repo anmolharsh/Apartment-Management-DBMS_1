@@ -7,6 +7,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from PIL import Image
 from django.core.files.base import ContentFile
+from django.urls import reverse_lazy
 
 #resident:p
 def signup_resident(request):
@@ -95,7 +96,7 @@ def login_view(request):
             user = form.get_user()
             login(request,user)
             if 'next' in request.POST:
-                return redirect(request.POST.get('next'))
+                return request.POST.get('next')
             else:
                 return redirect('/')
     else:
@@ -204,3 +205,4 @@ def logout_view(request):
         return redirect('home')
     else:
         return redirect('home')
+

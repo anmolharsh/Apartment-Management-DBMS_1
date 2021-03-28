@@ -16,14 +16,14 @@ class complaints_display_view(generic.ListView) :
 	context_object_name = 'complaints_list'
 
 	def get_queryset(self) :
-		user_id = self.kwargs['user_id']
+		user_id = self.request.user.id
 		return Complaints.objects.filter(user_id__exact = user_id)
 
 	def get_context_data(self, **kwargs):
 	    context = super().get_context_data(**kwargs)
-	    field_names  = [f.name for f in Complaints._meta.get_fields()]
-	    context['column_headers'] = field_names
-	    context['user_id'] = self.kwargs['user_id']
+	    context['user_id'] = self.request.user.id
+	    resident = Resident.objects.get(user_id__exact = self.request.user.id)
+	    context['image_url'] = resident.image.url
 	    return context
 
 
@@ -33,8 +33,7 @@ class lodge_complaint_view(FormView) :
 	template_name = 'complaints/complaint_register.html'
 	
 	def dispatch(self, request, *args, **kwargs) :
-		self.success_url = reverse_lazy('complaints:complaints_display',kwargs = {'user_id' : kwargs['user_id']})
-		self.user = Resident.objects.get(user__exact = kwargs['user_id'])
+		self.success_url = reverse_lazy('complaints:complaints_display')
 		return super().dispatch(request,args,kwargs)
 
 	def get_context_data(self, **kwargs):
@@ -44,9 +43,41 @@ class lodge_complaint_view(FormView) :
 
 	def form_valid(self, form) :
 		complaint = form.save(commit = False)
-		complaint.user_id = self.user
+		complaint.user_id = Resident.objects.get(user__exact = self.request.user)
 		complaint.save()
 		return super().form_valid(form)
+
+class admin_complaint_view(generic.ListView) :
+	model = Complaints
+	template_name = 'complaints/complaints_admin.html'
+
+	def get_context_data(self, **kwargs):
+	    context = super().get_context_data(**kwargs)
+	    context['user_id'] = self.request.user.id
+	    image_url_list = []
+	    full_name_list = []
+	    complaints_list = self.model.objects.all() 
+	    for c in complaints_list :
+	    	resident = Resident.objects.get(user__exact = c.user_id)
+	    	full_name = resident.user.first_name + " " + resident.user.last_name
+	    	full_name_list.append(full_name)
+	    	image_url_list.append(resident.image.url)
+	    context['values'] = zip(full_name_list, image_url_list, complaints_list)
+	    return context
+
+	def post(self, request, **kwargs) :
+
+		if request.POST['comments'] and request.POST['complaint_id']:
+			if request.POST['status'] :
+				status = request.POST['status']
+			comments = request.POST['comments']
+			complaint_id = request.POST['complaint_id']
+			complaint = Complaints.objects.get(complaint_id__exact = complaint_id)
+			complaint.comments = comments
+			complaint.status = status
+			complaint.save()
+		
+		return HttpResponseRedirect(reverse_lazy('complaints:admin-complaint'))
 
 
 

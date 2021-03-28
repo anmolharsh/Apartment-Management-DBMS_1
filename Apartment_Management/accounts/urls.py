@@ -1,8 +1,11 @@
 from django.contrib import admin
 from django.urls import path,include
 from .import views
+from django.http import HttpResponse
+from django.shortcuts import render
 
 app_name = 'accounts'
+
 
 urlpatterns = [
     path('signup/', views.signup,name="signup"),
