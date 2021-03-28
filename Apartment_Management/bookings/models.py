@@ -5,9 +5,11 @@ from accounts.models import Resident
 class Booking(models.Model) :
 	WAITING = 'WAIT'
 	ALLOTTED = 'ALOT'
+	REJECTED = 'REJC'
 	status_choices = [
-		(WAITING, 'Waiting for approval'),
-		(ALLOTTED, 'Allotted'),
+		(WAITING, 'WAITING FOR APPROVAL'),
+		(ALLOTTED, 'ALLOTTED'),
+		(REJECTED, 'REJECTED'),
 	]
 
 	BADMINTON = 'BADM'

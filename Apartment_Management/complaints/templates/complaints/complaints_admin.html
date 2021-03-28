@@ -21,11 +21,13 @@
             <medium class="text-muted"><b>Content</b> : {{ complaint.content }}</br></medium>
             <medium class="text-muted"><b>Comments</b> : {{ complaint.comments }}</br></medium>
             <form class="form-inline my-2 my-lg-3" method = "post" action="{% url 'complaints:admin-complaint' %}">
-             <input type="radio" id="progress" name="status" value="PRG">
+              {% csrf_token %}
+            <input type = "hidden" name = "status" value = "">
+            <input type="radio" id="progress" name="status" value="PRG">
             <label for="progress">In Progress</label><br>
             <input type="radio" id="completed" name="status" value="CMP">
             <label for="completed">Completed</label><br>
-            {% csrf_token %}
+            
             <input class="form-control mr-sm-2" type="comments" placeholder="" aria-label="comments" name="comments">
             <input type = "hidden" name = "complaint_id" value = "{{ complaint.complaint_id }}">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Edit Comments</button>
