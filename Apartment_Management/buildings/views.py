@@ -10,24 +10,20 @@ from .models import Building, Flat, Service_Directory, Occupies
 
 
 def view_flat(request):
-	model = Occupies.objects.filter(user_id = request.user)
+	model = Occupies.objects.filter(user_id = request.user.pk)
+	print(request.user.pk)
 	flat_model = []
 	for i in model:
 		print(i.flat_id)
-		temp = Flat.objects.filter(flat_id = i.flat_id)
+		temp = Flat.objects.filter(flat_id = str(i.flat_id.pk))
 		flat_model.append(temp)
-		print(Flat.objects.filter(flat_id = i.flat_id))
-	# # render
-	# flat_model += Flat.objects.filter(flat_id = model.flat_id)
-	cnt = 0
-	new_dict = []
-	for i in flat_model:
-		for j in i:
-			print("t\t",j)
-	# 	new_dict = {cnt:i}
-	# 	cnt+=1
 	print(flat_model)
-	return render(request, 'buildings/flat.html', {'flat_model':flat_model})
+	new_flat_model = []
+
+	for i in flat_model:
+		new_flat_model.append(i[0])
+	# print(Flat.objects.all())
+	return render(request, 'buildings/flat.html', {'flat_model':new_flat_model})
 
 
 def view_building(request):
