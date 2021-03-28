@@ -45,3 +45,32 @@ class create_booking_view(FormView) :
 		booking.user_id = Resident.objects.get(user__exact = self.request.user)
 		booking.save()
 		return super().form_valid(form)
+
+class admin_bookings_view(generic.ListView) :
+	model = Booking
+	template_name = 'bookings/bookings_admin.html'
+
+	def get_context_data(self, **kwargs):
+	    context = super().get_context_data(**kwargs)
+	    context['user_id'] = self.request.user.id
+	    image_url_list = []
+	    full_name_list = []
+	    bookings_list = self.model.objects.all() 
+	    for c in bookings_list :
+	    	resident = Resident.objects.get(user__exact = c.user_id)
+	    	full_name = resident.user.first_name + " " + resident.user.last_name
+	    	full_name_list.append(full_name)
+	    	image_url_list.append(resident.image.url)
+	    context['values'] = zip(full_name_list, image_url_list, bookings_list)
+	    return context
+
+	def post(self, request, **kwargs) :
+		print("HELLLOOOO")
+		if request.POST['status'] and request.POST['booking_id']:
+			status = request.POST['status']
+			booking_id = request.POST['booking_id']
+			booking = Booking.objects.get(booking_id__exact = booking_id)
+			booking.status = status
+			booking.save()
+		
+		return HttpResponseRedirect(reverse_lazy('bookings:admin-booking'))

@@ -66,16 +66,19 @@ class admin_complaint_view(generic.ListView) :
 	    return context
 
 	def post(self, request, **kwargs) :
-
-		if request.POST['comments'] and request.POST['complaint_id']:
-			if request.POST['status'] :
-				status = request.POST['status']
-			comments = request.POST['comments']
+		if request.POST['complaint_id'] :
 			complaint_id = request.POST['complaint_id']
 			complaint = Complaints.objects.get(complaint_id__exact = complaint_id)
+
+		if request.POST['comments']:
+			comments = request.POST['comments']
 			complaint.comments = comments
-			complaint.status = status
-			complaint.save()
+		
+		if request.POST['status'] != "" :
+			status = request.POST['status']
+			complaint.status = status	
+		
+		complaint.save()
 		
 		return HttpResponseRedirect(reverse_lazy('complaints:admin-complaint'))
 
