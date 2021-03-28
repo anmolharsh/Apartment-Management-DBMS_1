@@ -1,0 +1,36 @@
+<!-- {% extends 'base.html' %} -->
+<!-- {% load static %} -->
+<!-- {% block content %} -->
+<!DOCTYPE html>
+<html>
+  <head>
+  	<!-- <link rel="stylesheet" href="{% static 'table.css' %}">	 -->
+    <!-- <meta charset="utf-8"> -->
+    <title>My test page</title>
+  </head>
+  <body>
+    <!-- <h1>COMPLAINT/S</h1> -->
+    <!-- <div  id = "lodge_complaint_button"> -->
+       <!-- <button class="btn btn-outline-success my-2 my-sm-0"><a href="{% url 'buildings:flat_details'% }">Lodge Complaint</a> -->
+       <!-- </button>
+    </div>
+    <table class = 'table table-bordered table-hover' style="width:100%">
+    	<thead class="thead-dark">
+      	<tr>
+      		{% for header in column_headers %}
+      	   	<th>{{ header }}</th>
+      		{% endfor %}
+      	</tr>
+      </thead>
+      {% for complaint in flat_model %}
+      <tr>
+         <td>{{ complaint.flat_no }}</td>
+         <td>{{ complaint.flat_type }}</td>
+         <td>{{ complaint.flat_area }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+-->
+  </body> 
+</html>
+<!-- {% endblock %}

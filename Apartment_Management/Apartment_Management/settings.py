@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'complaints',
     'bookings',
     "bootstrap4",
-    "bootstrap_datepicker_plus", 
+    "bootstrap_datepicker_plus",
+    'buildings',
 ]
 
 MIDDLEWARE = [
