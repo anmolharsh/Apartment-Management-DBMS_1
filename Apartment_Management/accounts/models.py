@@ -56,11 +56,5 @@ class Profile(models.Model):
     def __str__(self):
         return self.user.username
 
-class Notification(AbstractNotification):
-    user = models.ForeignKey(User,on_delete = models.CASCADE)
-
-    class Meta(AbstractNotification.Meta):
-        abstract = False
-        app_label = 'accounts'
 
         

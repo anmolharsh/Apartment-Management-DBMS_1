@@ -10,6 +10,7 @@
   <body>
 
     <h1>VISITORS</h1>
+        {% if visitors_list %}
         {% for visitor in visitors_list %}
         <article class="media content-section">
         <img class = "rounded-circle article-img" src = "/static/visitor.png">
@@ -17,6 +18,9 @@
           <div class="article-metadata">
             <medium class="text-muted"><b>Visitor-ID</b> : {{ visitor.visitor_id }}</br></medium>
             <medium class="text-muted"><b>Name</b> : {{ visitor.fname }} {{visitor.lname }} </br></medium>
+            {% if visitor.status %}
+            <medium class="text-muted"><b>Status</b> : {{ visitor.get_status_display }}</br></medium>
+            {% endif %}
             <medium class="text-muted"><b>Phone Number</b> : {{ visitor.phone }} </br></medium>
             <medium class="text-muted"><b>Date & Time of Entry</b> : {{ visitor.datetime_entry }}</br></medium>
             <medium class="text-muted"><b>Date & Time of Exit</b> : 
@@ -26,10 +30,23 @@
             Visitor still inside, hasn't left
             {% endif %}
             </br></medium>
+            {% if visitor.status == None %}
+            <form class="form-inline my-2 my-lg-3" method = "post" action="{% url 'visitors:visitors_display' %}">
+              {% csrf_token %}
+              <input type = "hidden" name = "visitor_id" value = "{{ visitor.visitor_id }}">
+              <button  class="btn btn-outline-success my-2 my-sm-0" type = "submit" name = "status" value = 'APRV'>Approve
+              </button>
+              <button class="btn btn-outline-success my-2 my-sm-0" type = "submit" name = "status" value = 'REJC'>Reject
+              </button>
+            </form>
+            {% endif %}
           </div>
         </div>
         </article>
       {% endfor %}
+      {% else %}
+      <h3>There are no visitors :(</h3>
+      {% endif %}
   </body>
 </html>
 {% endblock %}

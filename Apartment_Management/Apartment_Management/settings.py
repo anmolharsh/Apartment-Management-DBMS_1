@@ -142,5 +142,3 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 BOOTSTRAP4 = {
     'include_jquery': True,
 }
-
-NOTIFICATIONS_NOTIFICATION_MODEL = 'accounts.Notification'

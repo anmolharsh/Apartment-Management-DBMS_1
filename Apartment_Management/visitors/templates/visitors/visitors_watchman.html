@@ -25,12 +25,17 @@
         <medium class="text-muted"><b>Resident Name</b> : {{ full_name }}</br></medium>
         <medium class="text-muted"><b>Visitor-ID</b> : {{ visitor.visitor_id }}</br></medium>
         <medium class="text-muted"><b>Name</b> : {{ visitor.fname }} {{visitor.lname }} </br></medium>
+        {% if visitor.status %}
+        <medium class="text-muted"><b>Status</b> : {{ visitor.get_status_display }}</br></medium>
+        {% endif %}
         <medium class="text-muted"><b>Phone Number</b> : {{ visitor.phone }} </br></medium>
         <medium class="text-muted"><b>Date & Time of Entry</b> : {{ visitor.datetime_entry }}</br></medium>
         <medium class="text-muted"><b>Date & Time of Exit</b> : 
         {% if visitor.datetime_exit %}
         {{ visitor.datetime_exit }}
-        {% else %}
+        {% elif visitor.status == 'REJC' %}
+        ---------------------------
+        {% elif visitor.status == 'APRV' %}
         Visitor still inside, hasn't left
         <div class="container">
           <div class="col-md-3">

@@ -4,10 +4,11 @@ from django.urls import reverse_lazy
 from django.views import generic
 from django import forms
 from django.views.generic.edit import FormView
-
+from notifications.signals import notify
 from .models import Visitor
 from .forms import visitor_exit_form, visitor_entry_form
 from accounts.models import Resident
+from django.contrib.auth.models import User
 
 # Create your views here.
 class visitors_display_view(generic.ListView) :
@@ -22,6 +23,16 @@ class visitors_display_view(generic.ListView) :
 	def get_context_data(self, **kwargs):
 	    context = super().get_context_data(**kwargs)
 	    return context
+
+	def post(self, request, **kwargs) :
+		if request.POST['status'] and request.POST['visitor_id']:
+			status = request.POST['status']
+			visitor_id = request.POST['visitor_id']
+			visitor = Visitor.objects.get(visitor_id__exact = visitor_id)
+			visitor.status = status
+			visitor.save()
+		
+		return HttpResponseRedirect(reverse_lazy('visitors:visitors_display'))
 
 class watchman_visitor_view(FormView) :
 	model = Visitor
