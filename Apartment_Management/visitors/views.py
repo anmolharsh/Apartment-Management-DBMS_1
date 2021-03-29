@@ -75,7 +75,13 @@ class visitor_entry_view(FormView) :
 
 	def form_valid(self, form) :
 		visitor = form.save(commit = False)
-		r = Resident.objects.get(user_id__first_name__iexact = form.cleaned_data['resident_name'])
-		visitor.user_id = r
-		visitor.save()
+		try :
+			r = Resident.objects.get(user_id__first_name__iexact = form.cleaned_data['resident_name'])
+			visitor.user_id = r
+			visitor.save()
+		except :
+			self.success_url = reverse_lazy('visitors:resident_error')
 		return super().form_valid(form)
+
+def resident_error_view(request) :
+	return render(request,'visitors/resident_entry_error.html')

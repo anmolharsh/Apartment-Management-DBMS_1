@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<h5><strong>Sorry, the given resident doesn't exist in our database :(</strong></h5>
+<a  href="{% url 'visitors:visitors_entry' %}"><button class="btn btn-outline-success my-2 my-sm-0">Try Again</button></a>
+{% endblock %}
