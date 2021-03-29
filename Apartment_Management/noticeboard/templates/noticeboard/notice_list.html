@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-  	<link rel="stylesheet">	
+  	<link rel="stylesheet" href="{% static 'visitor-entry.css' %}">	
     <meta charset="utf-8">
     <style>
 	div.a {
@@ -16,32 +16,36 @@
 
   </head>
   <body>
-    <h1 class="text-center"> <strong> NOTICE BOARD <strong></h1>
-    	
+    <legend class = "border-bottom mb-4"><h2 class="text-center"><img  src="/static/notice.png" width = "45" height = "45" alt="home" /> <strong>Notice Board</strong></h2></legend>
+    
+      {% if user.is_authenticated and user.is_superuser%}
+    <div  id = "create_visitor_button">
+     <a href="{% url 'noticeboard_notice_create' %}"><button class="btn btn-outline-success my-2 my-sm-0">Add New Notice
+     </button></a>
+    </div>
+  {% endif %}
 
         {% for object in object_list %}
         <article class="media content-section">
        
         <div class="media-body">
           <div class="article-metadata"> 
-            <medium class="text-center"> <h3><strong>{{ object.title }}</strong></h3></br></medium>
+            <medium class="text-center"> <h4><strong>{{ object.title }}</strong></h4></br></medium>
            
             <medium class="text-muted"><p class="text-right">{{ object.date }}</p></br></medium>
-            <medium class="text-muted"><p style="font-family:verdana">{{ object.content }}</p></br></medium>
+            <medium class="text"><p>{{ object.content }}</p></br></medium>
   			{% if  object.link  != None %}
-            <medium class="text-muted"><b>link: </b><a href="{{ object.link }}">{{ object.link }}</a></br></medium>
+            <medium class="text-muted"><b>For more details: </b><a href="{{ object.link }}">{{ object.link }}</a></br></medium>
             {% endif %}
           </div>
           {% if user.is_authenticated and user.is_superuser %}
-          <a class="btn btn-outline-success float-right" href="{{object.get_update_url}}">Edit </a>
+          
           <a class="btn btn-outline-secondary float-right" href="{{object.get_delete_url}}">Delete </a>
+          <a class="btn btn-outline-success float-right" href="{{object.get_update_url}}">Edit </a>
           {% endif %}
         </div>
         </article>
       {% endfor %}
-      {% if user.is_authenticated and user.is_superuser%}
-    	<a class="btn btn-primary  btn-lg float-right" href="{% url 'noticeboard_notice_create' %}">Add New Notice</a>
-    	{% endif %}
 
   </body>
 </html>

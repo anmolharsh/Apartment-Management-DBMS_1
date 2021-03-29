@@ -23,16 +23,20 @@ body { background-color: #0f121f;
     <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
     <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
     <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
   </ol>
   <div class="carousel-inner">
-    <div class="carousel-item active">
+    <div class="carousel-item active" data-interval="5000">
+      <img src="/static/AMS.png" class="d-block w-100" width="500" height="600" alt="...">
+    </div>
+    <div class="carousel-item" data-interval="5000">
       <img src="/static/appartments1.jpg" class="d-block w-100" width="500" height="600" alt="...">
     </div>
-    <div class="carousel-item">
-      <img src="/static/appartments.jpg" class="d-block w-100" width="500" height="600" alt="...">
+    <div class="carousel-item" data-interval="5000">
+      <img src="/static/gym.jpg" class="d-block w-100" width="500" height="600" alt="...">
     </div>
-    <div class="carousel-item">
-      <img src="/static/stars.png" class="d-block w-100" width="500" height="600" alt="...">
+    <div class="carousel-item" >
+      <img src="/static/tree.jpg" class="d-block w-100" width="500" height="600" alt="...">
     </div>
   </div>
   <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -45,6 +49,19 @@ body { background-color: #0f121f;
   </a>
 </div>
 </div>
-</body>>
+</body>
+<style>
+.xyz {
+  position: fixed;
+  left: 0;
+  bottom: 70px;
+  width: 100%;
+  color: white;
+  text-align: center;
+}
+</style>
+<div class="xyz">
+<p style="font-size:5vw" class="text-center">Welcome to ApartWell!</p>
+</div>
 </html>
 {% endblock %}

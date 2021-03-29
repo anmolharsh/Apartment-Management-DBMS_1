@@ -38,10 +38,12 @@ body {
 
       .site-header .navbar-nav .nav-link:hover {
         color: #ffffff;
+        
       }
 
       .site-header .navbar-nav .nav-link.active {
         font-weight: 500;
+
       }
 
       .content-section {
@@ -123,6 +125,11 @@ body {
     background-color: #2d2e2f;!important;
 }
 
+#abc {
+  padding-left: 10px
+  padding-right:10px
+}
+
 #bell {
     display: block;
     text-align: center;
@@ -142,23 +149,6 @@ body {
 }
 
 
-#cart-icon{
-    width:25px;
-    display: inline-block;
-    margin-left: 15px;
-}
-
-#cart-total{
-    display: block;
-    text-align: center;
-    color:#fff;
-    background-color: red;
-    width: 20px;
-    height: 25px;
-    border-radius: 50%;
-    font-size: 14px;
-}
-
 .col-lg-4, .col-lg-6, .col-lg-8, .col-lg-12{
     margin-top: 10px;
 }
@@ -176,36 +166,6 @@ body {
     display: inline-block;
     padding: 5px;
 }
-
-.cart-row{
-    display: flex;
-    align-items: flex-stretch;
-    padding-bottom: 10px;
-    margin-bottom: 10px;
-    border-bottom: 1px solid #ececec;
-
-}
-
-.quantity{
-    display: inline-block;
-    font-weight: 700;
-    padding-right:10px;
-
-
-}
-
-.chg-quantity{
-    width: 12px;
-    cursor: pointer;
-    display: block;
-    margin-top: 5px;
-    transition:.1s;
-}
-
-.chg-quantity:hover{
-    opacity: .6;
-}
-
 
 .hidden{
     display: none!important;

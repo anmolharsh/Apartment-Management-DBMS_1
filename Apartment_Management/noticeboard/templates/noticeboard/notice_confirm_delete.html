@@ -5,10 +5,10 @@
 
 	<form method="post">{% csrf_token %}
 	    <p>Are you sure you want to delete "{{ object }}"?</p>
-	    <input class="btn btn-primary" type="submit" value="Confirm">
+	    <input class="btn btn-success" type="submit" value="Confirm">
 	</form>
 
-	<button class="btn btn-outline-success my-2 my-sm-0"><a  href="{% url 'noticeboard_notice_list' %}">Cancel</a></button>
+	<a  href="{% url 'noticeboard_notice_list' %}"><button class="btn btn-outline-danger my-2 my-sm-0">Cancel</button></a>
 
 	{% else %}
 	<div class="container">

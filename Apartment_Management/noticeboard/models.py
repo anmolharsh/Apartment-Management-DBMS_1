@@ -6,7 +6,7 @@ from django_extensions.db.fields import AutoSlugField
 # Create your models here.
 class Notice(models.Model) :
 	
-	title = models.TextField(max_length = 40)
+	title = models.CharField(max_length = 40)
 	slug = extension_fields.AutoSlugField(populate_from='title', blank=True)
 	date = models.DateTimeField( auto_now = True)
 	content = models.TextField(max_length = 400)

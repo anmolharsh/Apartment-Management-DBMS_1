@@ -8,6 +8,13 @@ from searchableselect.widgets import SearchableSelect
 
 class visitor_entry_form(forms.ModelForm):
 	resident_name = forms.CharField(max_length = 20)
+	
+	def __init__(self, *args, **kwargs): 
+	    super(forms.ModelForm, self).__init__(*args, **kwargs)
+	    self.fields['fname'].label = 'First Name'
+	    self.fields['lname'].label = 'Last Name'
+	    self.fields['datetime_entry'].label = 'Entry Date & Time'
+
 
 	class Meta :
 		model = Visitor

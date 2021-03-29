@@ -31,7 +31,7 @@ def NoticeCreateView(request):
 
 
 def success(request):
-    return redirect('home')
+    return redirect('noticeboard_notice_list')
 
 class NoticeDetailView(DetailView):
     """ Allows you to view detailed information about an object in Notice. """

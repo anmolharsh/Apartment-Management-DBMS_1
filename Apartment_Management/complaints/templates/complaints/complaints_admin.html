@@ -8,7 +8,7 @@
     <meta charset="utf-8">
   </head>
   <body>
-    <h1>COMPLAINTS</h1>
+    <legend class = "border-bottom mb-4"><h2 class="text-center"><img  src="/static/complaint.png" width = "45" height = "45" alt="home" /> <strong>Registered Complaints</strong></h2></legend>
         {% for name, image_url, complaint in values %}
         <article class="media content-section">
         <img class = "rounded-circle article-img"src = "{{ image_url }}">
@@ -24,9 +24,9 @@
               {% csrf_token %}
             <input type = "hidden" name = "status" value = "">
             <input type="radio" id="progress" name="status" value="PRG">
-            <label for="progress">In Progress</label><br>
+            <label for="progress"> In Progress </label><br>
             <input type="radio" id="completed" name="status" value="CMP">
-            <label for="completed">Completed</label><br>
+            <label for="completed"> Completed  </label><br>
             
             <input class="form-control mr-sm-2" type="comments" placeholder="" aria-label="comments" name="comments">
             <input type = "hidden" name = "complaint_id" value = "{{ complaint.complaint_id }}">

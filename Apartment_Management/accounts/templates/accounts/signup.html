@@ -2,14 +2,13 @@
 {%load crispy_forms_tags%}
 {% block content %}
 	{% if flag %}
-    <h1>Adding New Resident</h1>
+  <legend class = "border-bottom mb-4"><img  src="/static/log-in.png" width = "35" height = "35" alt="home" /><strong>Adding New Resident</strong></legend>
     {% else %}
-    <h1>Adding New Watchman</h1>
+    <legend class = "border-bottom mb-4"><img  src="/static/watchman.png" width = "35" height = "35" alt="home" /><strong>Adding New Watchman</strong></legend>
     {% endif %}
     <form method = "POST" enctype = "multipart/form-data">
         {% csrf_token %}
         <fieldset class="form =-group">
-          <legend class = "border-bottom mb-4">Profile Info</legend>
           {{user_form|crispy}}
           {{details_form|crispy}}
         </fieldset>
