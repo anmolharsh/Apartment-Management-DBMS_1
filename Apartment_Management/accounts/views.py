@@ -8,6 +8,8 @@ from django.contrib.auth.decorators import login_required
 from PIL import Image
 from django.core.files.base import ContentFile
 from django.urls import reverse_lazy
+from django import forms
+from django.views.generic.edit import FormView
 
 #resident:p
 def signup_resident(request):
@@ -205,4 +207,6 @@ def logout_view(request):
         return redirect('home')
     else:
         return redirect('home')
+
+
 

@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+  <head>
+  	<link rel="stylesheet" href="{% static 'table.css' %}">	
+    <meta charset="utf-8">
+  </head>
+  <body>
+
+    <h1>VISITORS</h1>
+        {% for visitor in visitors_list %}
+        <article class="media content-section">
+        <img class = "rounded-circle article-img" src = "/static/visitor.png">
+        <div class="media-body">
+          <div class="article-metadata">
+            <medium class="text-muted"><b>Visitor-ID</b> : {{ visitor.visitor_id }}</br></medium>
+            <medium class="text-muted"><b>Name</b> : {{ visitor.fname }} {{visitor.lname }} </br></medium>
+            <medium class="text-muted"><b>Phone Number</b> : {{ visitor.phone }} </br></medium>
+            <medium class="text-muted"><b>Date & Time of Entry</b> : {{ visitor.datetime_entry }}</br></medium>
+            <medium class="text-muted"><b>Date & Time of Exit</b> : 
+            {% if visitor.datetime_exit %}
+            {{ visitor.datetime_exit }}
+            {% else %}
+            Visitor still inside, hasn't left
+            {% endif %}
+            </br></medium>
+          </div>
+        </div>
+        </article>
+      {% endfor %}
+  </body>
+</html>
+{% endblock %}

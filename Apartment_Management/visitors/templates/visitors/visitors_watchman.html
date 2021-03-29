@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+ <head>
+    <link rel="stylesheet" href="{% static 'visitor-entry.css' %}">
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   {% load bootstrap4 %}
+   {% bootstrap_css %}
+   {% bootstrap_javascript jquery='full' %}
+   {{ form.media }}
+ </head>
+ <body>
+ 	<h1> Visitors List </h1>
+  <div  id = "create_visitor_button">
+     <a href="{% url 'visitors:visitors_entry' %}"><button class="btn btn-outline-success my-2 my-sm-0">New Visitor
+     </button></a>
+  </div>
+  {% for full_name,visitor in values %}
+   <article class="media content-section">
+    <img class = "rounded-circle article-img" src = "/static/visitor.png">
+    <div class="media-body">
+      <div class="article-metadata">
+        <medium class="text-muted"><b>Resident Name</b> : {{ full_name }}</br></medium>
+        <medium class="text-muted"><b>Visitor-ID</b> : {{ visitor.visitor_id }}</br></medium>
+        <medium class="text-muted"><b>Name</b> : {{ visitor.fname }} {{visitor.lname }} </br></medium>
+        <medium class="text-muted"><b>Phone Number</b> : {{ visitor.phone }} </br></medium>
+        <medium class="text-muted"><b>Date & Time of Entry</b> : {{ visitor.datetime_entry }}</br></medium>
+        <medium class="text-muted"><b>Date & Time of Exit</b> : 
+        {% if visitor.datetime_exit %}
+        {{ visitor.datetime_exit }}
+        {% else %}
+        Visitor still inside, hasn't left
+        <div class="container">
+          <div class="col-md-3">
+            <form method="post">{% csrf_token %}
+              {% bootstrap_form form %}
+              <input type = "hidden" name = "visitor_id" value = "{{ visitor.visitor_id }}">
+              {% buttons %}
+              <button type="submit" class="btn btn-primary">Save</button>
+              {% endbuttons %}
+            </form>
+          </div>
+        </div>
+        {% endif %}
+        </br></medium>
+      </div>
+    </div>
+    </article>
+    {% endfor %}
+ </body>
+ {% endblock %}

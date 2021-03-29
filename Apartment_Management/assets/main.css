@@ -125,6 +125,25 @@ body {
 
 
 
+#bell {
+    display: block;
+    text-align: center;
+    width: 25px;
+    height: 25px;
+    padding: 
+}
+
+#badge {
+    position: absolute;
+    top: -2px;
+    right: -10px;
+    padding: 5px 10px;
+    border-radius: 80%;
+    background: red;
+    color: white;
+}
+
+
 #cart-icon{
     width:25px;
     display: inline-block;

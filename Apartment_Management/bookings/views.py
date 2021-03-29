@@ -65,7 +65,6 @@ class admin_bookings_view(generic.ListView) :
 	    return context
 
 	def post(self, request, **kwargs) :
-		print("HELLLOOOO")
 		if request.POST['status'] and request.POST['booking_id']:
 			status = request.POST['status']
 			booking_id = request.POST['booking_id']
