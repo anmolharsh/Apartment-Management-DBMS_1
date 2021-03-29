@@ -18,7 +18,6 @@ from django.urls import path,include
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.conf.urls.static import static
 from django.conf import settings
-import notifications.urls
 from .import views 
 
 urlpatterns = [
@@ -29,9 +28,8 @@ urlpatterns = [
     path('', include('complaints.urls')),
     path('', include('bookings.urls')),
     path('', include('buildings.urls')),
+    path('', include('noticeboard.urls')),
     path('', include('visitors.urls')),
-    path('^inbox/notifications/', include(notifications.urls, namespace='notifications')),
-    path('^searchableselect/', include('searchableselect.urls')),
 
 ]
 

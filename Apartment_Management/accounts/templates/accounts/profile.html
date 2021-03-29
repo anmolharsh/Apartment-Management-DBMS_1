@@ -13,7 +13,6 @@
       <h2 class="account-heading">{{ user.first_name }} {{user.last_name}}</h2>
     {% endif %}
       <p class="text-secondary">{{user.email}}</p>
-      <a class="detail-edit" href="{% url 'accounts:edit_details' %}">Edit Profile</a>
     </div>
   </div>
   <form method = "POST" enctype = "multipart/form-data">
@@ -22,9 +21,10 @@
       <legend class = "border-bottom mb-4">Profile Info</legend>
       {{user_form|crispy}}
       {{pic_form|crispy}}
+      {{edit_form|crispy}}
     </fieldset>
     <div class="form-group">
-      <button class = "btn btn-outline-info" type = "submit">Update</button>
+      <button class = "btn btn-success" type = "submit">Update</button>
     </div>
   </form>
 </div>

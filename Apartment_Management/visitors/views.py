@@ -4,7 +4,6 @@ from django.urls import reverse_lazy
 from django.views import generic
 from django import forms
 from django.views.generic.edit import FormView
-from notifications.signals import notify
 from .models import Visitor
 from .forms import visitor_exit_form, visitor_entry_form
 from accounts.models import Resident

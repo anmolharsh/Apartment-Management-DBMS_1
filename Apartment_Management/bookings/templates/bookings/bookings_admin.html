@@ -4,7 +4,6 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="stylesheet" href="{% static 'admin-bookings.css' %}"> 
     <meta charset="utf-8">
   </head>
   <body>
@@ -18,8 +17,7 @@
             <medium class="text-muted"><b>Booking-ID</b> : {{ booking.booking_id }}</br></medium>
             <medium class="text-muted"><b>Facility</b> : {{ booking.get_facility_display }}</br></medium>
             <medium class="text-muted"><b>Status</b> : {{ booking.get_status_display }}</br></medium>
-            <medium class="text-muted"><b>Date & Time</b> : {{ booking.date }}</br></medium>
-            <medium class="text-muted"><b>Check-in</b> : {{ booking.check_in }}</br></medium>
+            <medium class="text-muted"><b>Date & Time</b> : {{ booking.check_in }}</br></medium>
             <medium class="text-muted"><b>Duration</b> : {{ booking.duration }}</br></medium>
             {% if booking.status == 'WAIT'%}
               <form class="form-inline my-2 my-lg-3" method = "post" action="{% url 'bookings:admin-booking' %}">
@@ -27,7 +25,7 @@
                 <input type = "hidden" name = "booking_id" value = "{{ booking.booking_id }}">
                 <button  class="btn btn-outline-success my-2 my-sm-0" type = "submit" name = "status" value = 'ALOT'>Approve
                 </button>
-                <button class="btn btn-outline-success my-2 my-sm-0" type = "submit" name = "status" value = 'REJC'>Reject
+                <button class="btn btn-outline-danger my-2 my-sm-0" type = "submit" name = "status" value = 'REJC'>Reject
                 </button>
               </form>
             {% endif %}  

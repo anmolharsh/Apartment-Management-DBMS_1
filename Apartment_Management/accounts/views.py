@@ -8,8 +8,6 @@ from django.contrib.auth.decorators import login_required
 from PIL import Image
 from django.core.files.base import ContentFile
 from django.urls import reverse_lazy
-from django import forms
-from django.views.generic.edit import FormView
 
 #resident:p
 def signup_resident(request):
@@ -98,7 +96,7 @@ def login_view(request):
             user = form.get_user()
             login(request,user)
             if 'next' in request.POST:
-                return request.POST.get('next')
+                return redirect(request.POST.get('next'))
             else:
                 return redirect('/')
     else:
@@ -111,33 +109,39 @@ def profile(request):
         if request.user.profile.type == 'D':
             user_form = user_update(request.POST, instance=request.user)
             pic_form = profile_pic_serv(request.POST,request.FILES,instance=request.user.watchmen)
+            edit_form = edit_detail_serv(request.POST,instance = request.user.watchmen)
 
-            if user_form.is_valid() and pic_form.is_valid():
+
+            if user_form.is_valid() and pic_form.is_valid() and edit_form.is_valid():
                 user_form.save()
                 pic_form.save()
+                edit_form.save()
                 messages.success(request, f'Your Account Has been Updated')
-                return redirect('accounts:profile')
+                return redirect('home')
 
             context = {
                 'user_form': user_form,
-                'pic_form': pic_form
+                'pic_form': pic_form,
+                'edit_form': edit_form
             }
             return render(request, 'accounts/profile.html', context)
 
         else:
             user_form = user_update(request.POST, instance=request.user)
-
             pic_form = profile_pic_res(request.POST,request.FILES,instance=request.user.resident)
+            edit_form = edit_detail_res(request.POST,instance=request.user.resident)
 
-            if user_form.is_valid() and pic_form.is_valid():
+            if user_form.is_valid() and pic_form.is_valid() and edit_form.is_valid():
                 user_form.save()
                 pic_form.save()
+                edit_form.save()
                 messages.success(request, f'Your Account Has been Updated')
-                return redirect('accounts:profile')
+                return redirect('home')
 
             context = {
                 'user_form': user_form,
-                'pic_form': pic_form
+                'pic_form': pic_form,
+                'edit_form': edit_form
             }
             return render(request, 'accounts/profile.html', context)
 
@@ -145,23 +149,25 @@ def profile(request):
         if request.user.profile.type == 'D':
             user_form = user_update(instance = request.user)
             pic_form = profile_pic_serv(instance = request.user.watchmen)
+            edit_form = edit_detail_serv(instance = request.user.watchmen)
 
             context = {
                 'user_form': user_form,
-                'pic_form': pic_form
+                'pic_form': pic_form,
+                'edit_form': edit_form
             }
             return render(request, 'accounts/profile.html', context)
 
         else:
             user_form = user_update(instance = request.user)
             pic_form = profile_pic_res(instance = request.user.resident)
-
+            edit_form = edit_detail_res(instance=request.user.resident)
             context = {
                 'user_form': user_form,
-                'pic_form': pic_form
+                'pic_form': pic_form,
+                'edit_form': edit_form
             }
             return render(request, 'accounts/profile.html', context)
-
 @login_required(login_url="/login_user/")
 def edit_details(request):
     if request.method == 'POST':
@@ -207,6 +213,4 @@ def logout_view(request):
         return redirect('home')
     else:
         return redirect('home')
-
-
 

@@ -42,12 +42,13 @@ INSTALLED_APPS = [
     'accounts',
     'complaints',
     'bookings',
-    "bootstrap4",
-    "bootstrap_datepicker_plus",
+    'django_extensions',
+    'bootstrap4',
+    'bootstrap_datepicker_plus',
     'buildings',
-    'notifications',
+    'noticeboard',
     'visitors',
-    'searchableselect',
+    'searchableselect'
 ]
 
 MIDDLEWARE = [

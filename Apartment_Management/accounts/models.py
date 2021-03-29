@@ -1,8 +1,8 @@
 from django.db import models
 from phonenumber_field.modelfields import PhoneNumberField
 from django.contrib.auth.models import User
-from notifications.base.models import AbstractNotification
-
+#from orders.models import Order
+#from leave.models import leave_request
 from PIL import Image
 
 gender_choices =(
@@ -55,6 +55,3 @@ class Profile(models.Model):
 
     def __str__(self):
         return self.user.username
-
-
-        

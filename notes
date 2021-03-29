@@ -1,11 +1,13 @@
+
+/***********Set up Virtual-Environment**********/
 sudo apt-get install python3-venv
 mkdir djangoenv
 python3 -m venv djangoenv 
 source djangoenv/bin/activate
-  
- pip install django django-phonenumber-field phonenumbers image django-crispy-forms django-autofixture django-extensions 
- django-admin startproject Apartment_Management
 
-//sudo apt install python3-dev libmysqlclient-dev default-libmysqlclient-dev
-//sudo apt-get install libssl-dev
-//pip install wheel mysqlclient
+
+/******* Packages & libraries Required *********************/  
+ pip install django django-phonenumber-field phonenumbers image django-crispy-forms django-autofixture django-extensions wheel bootstrap4
+ pip install django-bootstrap-datepicker-plus django-searchable-select django-bootstrap4
+ 
+
