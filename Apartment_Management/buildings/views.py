@@ -20,7 +20,7 @@ def view_flat(request):
 	new_flat_model = []
 	for i in flat_model:
 		new_flat_model.append(i[0])
-	return render(request, 'buildings/flat.html', {'flat_model':new_flat_model})
+	return render(request, 'buildings/flat.html', {'flat_model':new_flat_model, 'all_flats':Flat.objects.all()})
 
 
 def view_building(request):
@@ -40,7 +40,7 @@ def view_building(request):
 	for i in building_model:
 		new_building_model.append(i[0])
 	new_building_model = set(new_building_model)
-	return render(request, 'buildings/building.html', {'flat_model':new_building_model})
+	return render(request, 'buildings/building.html', {'flat_model':Building.objects.all()})
 
 
 def view_service_directory(request):

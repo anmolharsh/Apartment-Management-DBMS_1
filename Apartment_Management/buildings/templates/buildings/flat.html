@@ -14,19 +14,36 @@
        <button class="btn btn-outline-success my-2 my-sm-0"><a href="/view/">View Main</a>
        </button>
     </div>
+        {% if user.is_authenticated and user.is_superuser %}
+        {% for complaint in all_flats %}
+        <article class="media content-section">
+        <div class="media-body">
+          <div class="article-metadata">
+            <medium class="text-primary"><b>Flat No</b> : {{ complaint.flat_no }}</br></medium>
+            <medium class="text-primary"><b>Building</b> : {{ complaint.building_id.building_name }}</br></medium>
+            <medium class="text-muted"><b>Flat Type</b> : {{ complaint.flat_type }} BHK</br></medium>
+            <medium class="text-muted"><b>Flat Area</b> : {{ complaint.flat_area }}</br></medium>
+            <medium class="text-muted"><b>Vaccancy</b> : {{ complaint.vaccancy }}</br></medium>
+          </div>
+        </div>
+        </article>
+      {% endfor %}
+
+      {% else %}    
         {% for complaint in flat_model %}
         <article class="media content-section">
         <div class="media-body">
           <div class="article-metadata">
             <medium class="text-primary"><b>Flat No</b> : {{ complaint.flat_no }}</br></medium>
-            <medium class="text-muted"><b>Flat Type</b> : {{ complaint.flat_type }}</br></medium>
+            <medium class="text-primary"><b>Building</b> : {{ complaint.building_id.building_name }}</br></medium>
+            <medium class="text-muted"><b>Flat Type</b> : {{ complaint.flat_type }} BHK</br></medium>
             <medium class="text-muted"><b>Flat Area</b> : {{ complaint.flat_area }}</br></medium>
             <medium class="text-muted"><b>Vaccancy</b> : {{ complaint.vaccancy }}</br></medium>
-            <medium class="text-muted"><b>Flat ID</b> : {{ complaint.flat_id }}</br></medium>
           </div>
         </div>
         </article>
       {% endfor %}
+    {% endif %}
   </body>
 </html>
 {% endblock %}

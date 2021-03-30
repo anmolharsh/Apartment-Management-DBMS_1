@@ -11,18 +11,21 @@
 
     <h1>VIEW OCCUPANCIES</h1>
     <br>
+
     <div  id = "looodge_complaint_button">
-       <button class="btn btn-outline-success my-1 my-sm-0"><a href="/view/add_occupancy">Add Occupancy</a></button>
       <button class="btn btn-outline-success my-2 my-sm-0"><a href="/view/">View Main</a></button>
+    {% if user.is_authenticated and user.is_superuser %}
+       <button class="btn btn-outline-success my-1 my-sm-0"><a href="/view/add_occupancy">Add Occupancy</a></button>
       <button class="btn btn-outline-success my-2 my-sm-0"><a href="/view/remove_occupancy">Remove Occupancy</a></button>
+    {% endif %}
     </div>
     <br>
       {% for complaint in occupies %}
         <article class="media content-section">
         <div class="media-body">
           <div class="article-metadata">
-            <medium class="text-muted"><b>User</b> : {{ complaint.user_id }}</br></medium>
-            <medium class="text-muted"><b>Flat</b> : {{ complaint.flat_id }}</br></medium>
+            <medium class="text-muted"><b>User</b> : {{ complaint.user_id.first_name }} {{ complaint.user_id.last_name }}</br></medium>
+            <medium class="text-muted"><b>Flat</b> : {{ complaint.flat_id.flat_no }}</br></medium>
             <medium class="text-muted"><b>Ownership</b> : {{ complaint.ownership }}</br></medium>
           </div>
         </div>

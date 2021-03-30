@@ -4,7 +4,7 @@ sudo apt-get install python3-venv
 mkdir djangoenv
 python3 -m venv djangoenv 
 source djangoenv/bin/activate
-
+cd Apartment_Management
 
 /******* Packages & libraries Required *********************/  
  pip install django django-phonenumber-field phonenumbers image django-crispy-forms django-autofixture django-extensions wheel bootstrap4

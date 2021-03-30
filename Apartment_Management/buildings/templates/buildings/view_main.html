@@ -10,10 +10,13 @@
   <body>
 
     <h1>APARTMENT DETAILS</h1>
+      
 
+      {% if user.is_authenticated and user.is_superuser %}
        <button class="btn btn-outline-success "><a href="/view/view_occupancy/">View Occupancies</a></button>
-       <button class="btn btn-outline-success my-2 my-sm-0"><a href="/view/flat/">View Flats</a></button>
        <button class="btn btn-outline-success my-2 my-sm-0"><a href="/view/building/">View Buildings</a></button>
+       {% endif %}
+       <button class="btn btn-outline-success my-2 my-sm-0"><a href="/view/flat/">View Flats</a></button>
        <button class="btn btn-outline-success my-2 my-sm-0"><a href="/view/service_directory/">View Service Directory</a></button>      
     </div>
   </body>
