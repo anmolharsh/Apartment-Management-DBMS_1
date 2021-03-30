@@ -15,7 +15,7 @@
     </div>
     {% endif %}
 
-    <h1>SERVICE DIRECTORY</h1>
+    <legend class = "border-bottom mb-4"><h1 class="text-center"> <strong>Service Directory</strong></h1></legend>
     {% if user.is_authenticated and user.is_superuser %}
         {% for complaint in all_sd %}
         <article class="media content-section">
