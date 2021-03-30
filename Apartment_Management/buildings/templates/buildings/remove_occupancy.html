@@ -8,22 +8,33 @@
     <meta charset="utf-8">
   </head>
   <body>
+
+    <h1>REMOVE OCCUPANCIES</h1>
     <div  id = "lodge_complaint_button">
        <button class="btn btn-outline-success my-2 my-sm-0"><a href="/view/">View Main</a>
        </button>
     </div>
-
-    <h1>SERVICE DIRECTORY</h1>
-        {% for complaint in flat_model %}
+<form method="POST"  >
+  {% csrf_token %}
+        {% for complaint in occupies %}
         <article class="media content-section">
         <div class="media-body">
           <div class="article-metadata">
-            <medium class="text-primary"><b>Name</b> : {{ complaint.name }}</br></medium>
-            <medium class="text-muted"><b>Profession</b> : {{ complaint.profession }}</br></medium>
+            <input type="radio" id="o" name="o" value='{{ complaint.pk }}'>
+              <label for="o">Flat: {{ complaint.flat_id }}</label><br>
+              <label for="o">User: {{ complaint.user_id }}</label><br>
+              <label for="o">Ownership: {{ complaint.ownership }}</label><br>
+
           </div>
         </div>
         </article>
       {% endfor %}
+
+      {% if user.is_authenticated and user.is_superuser %}
+        <input type="submit" value="Enter"/>
+      {% endif %}
+  </form>
+
   </body>
 </html>
 {% endblock %}

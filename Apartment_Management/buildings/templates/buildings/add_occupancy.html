@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+  <head>
+  	<link rel="stylesheet" href="{% static 'table.css' %}">	
+    <meta charset="utf-8">
+  </head>
+  <body>
+
+
+    <h1>ADD OCCUPANCIES</h1>
+{% if user.is_authenticated and user.is_superuser %}
+<form method="POST">
+  {% csrf_token %}
+        <article class="media content-section">
+         <label for="flat">Choose Flat:   </label>
+          <select name="flat" id="flat">
+        {% for complaint in flat %}
+            <option value="{{complaint.flat_id}}">{{complaint.flat_no}}</option>
+        {% endfor %}
+          </select> 
+        </article>
+
+        <article class="media content-section">
+         <label for="user1">Choose User:   </label>
+          <select name="user1" id="user1">
+      {% for complaint in user1 %}
+            <option value="{{complaint}}">{{complaint.first_name}}</option>
+      {% endfor %}
+          </select> 
+        </article>
+        
+        <article class="media content-section">
+         <label for="flat">Seelct Ownership:   </label>
+          <select name="ownership" id="ownership">
+            <option value="Tenant">Tenant</option>
+            <option value="Owner">Owner</option>
+          </select> 
+        </article>
+
+    <input type="submit" value="Enter"/>
+  </form>
+{% endif %}
+  </body>
+
+</html>
+{% endblock %}

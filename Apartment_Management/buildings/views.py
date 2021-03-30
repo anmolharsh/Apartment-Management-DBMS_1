@@ -1,5 +1,6 @@
 from django.shortcuts import render,redirect
 from .models import Building, Flat, Service_Directory, Occupies
+from django.contrib.auth.models import User
 
 # Create your views here.
 
@@ -68,7 +69,35 @@ def view_service_directory(request):
 
 
 
+def view_add_occupancy(request):
+	context = {'flat': Flat.objects.all() , 'user1': User.objects.all(), 'occupies': Occupies.objects.all() }
+	if request.method == 'GET':
+		return render(request, 'buildings/add_occupancy.html', context)
+	else:
+		o = Occupies()
+		user_instance = User.objects.get(username = request.POST['user1'])
+		o.user_id = user_instance
+		flat_instance = Flat.objects.get(flat_id = request.POST['flat'])
+		o.flat_id = flat_instance
+		o.ownership = request.POST['ownership']
+		check = Occupies.objects.filter(flat_id = request.POST['flat'])
+		flag = False
+		for i in check:
+			if i.user_id == user_instance:
+				flag = True
+		if flag==False:
+			o.save()
+		return render(request, 'buildings/view_occupancy.html', context)
+
+def view_occupancy(request):
+	context = {'occupies': Occupies.objects.all()}
+	return render(request, 'buildings/view_occupancy.html', context)
 
 
+def remove_occupancy(request):
+	if request.method == 'POST':
+		o = request.POST['o']
+		Occupies.objects.get(pk=o).delete()
+	return render(request, 'buildings/remove_occupancy.html', {'occupies' : Occupies.objects.all()})
 
 
