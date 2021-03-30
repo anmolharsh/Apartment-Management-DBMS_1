@@ -11,6 +11,17 @@
 
 
     <h1>ADD OCCUPANCIES</h1>
+    <div  id = "lodge_complaint_button">
+       <button class="btn btn-outline-success "><a href="/view/">View Main</a></button>
+       <!-- <button class="btn btn-outline-success my-2 my-sm-0"><a href="/view/view_occupancy">View Occupancies</a></button> -->
+       
+    </div>
+    <div  id = "lodge_complaint_button">
+       <!-- <button class="btn btn-outline-success my-1 my-sm-0"><a href="/view/">View Main</a></button> -->
+       <button class="btn btn-outline-success "><a href="/view/view_occupancy">View Occupancies</a></button>
+       
+    </div>
+
 {% if user.is_authenticated and user.is_superuser %}
 <form method="POST">
   {% csrf_token %}
