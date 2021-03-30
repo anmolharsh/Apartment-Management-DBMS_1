@@ -26,8 +26,8 @@ class Service_Directory(models.Model):
 	name = models.CharField(max_length=50)
 	profession = models.CharField(max_length=30)
 	building_id = models.ForeignKey(Building, on_delete=models.CASCADE)
-	phone_no = models.IntegerField()
-	
+	phone_no = PhoneNumberField(blank=False)
+
 class Occupies(models.Model):
 	flat_id = models.ForeignKey(Flat, on_delete=models.CASCADE)
 	user_id = models.ForeignKey(User, on_delete=models.CASCADE)
