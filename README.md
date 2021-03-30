@@ -3,13 +3,13 @@
 ##### Step1: Clone repo.
 ```
 git clone https://github.com/anmolharsh/Apartment-Management-DBMS_1.git
-cd Apartment-Management-DBMS_1
 ```
 
 ##### Step2: Installation
 
 1. Install python virtual environment
 ```bash
+cd Apartment-Management-DBMS_1
 sudo apt-get install python3-venv  
 ```
 
