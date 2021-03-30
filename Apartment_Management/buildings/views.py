@@ -65,7 +65,7 @@ def view_service_directory(request):
 		temp = Service_Directory.objects.filter(building_id = i.building_id)
 		sd += temp
 	new_sd = sd
-	return render(request, 'buildings/service_directory.html', {'flat_model':new_sd})
+	return render(request, 'buildings/service_directory.html', {'flat_model':new_sd, 'all_sd':Service_Directory.objects.all()})
 
 
 

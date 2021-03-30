@@ -10,10 +10,12 @@
   <body>
 
     <h1>FLATS</h1>
+    {% if user.is_authenticated and user.is_superuser %}
     <div  id = "lodge_complaint_button">
        <button class="btn btn-outline-success my-2 my-sm-0"><a href="/view/">View Main</a>
        </button>
     </div>
+    {% endif %}
         {% if user.is_authenticated and user.is_superuser %}
         {% for complaint in all_flats %}
         <article class="media content-section">

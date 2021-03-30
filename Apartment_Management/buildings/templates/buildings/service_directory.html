@@ -4,16 +4,34 @@
 <!DOCTYPE html>
 <html>
   <head>
-  	<link rel="stylesheet" href="{% static 'table.css' %}">	
+    <link rel="stylesheet" href="{% static 'table.css' %}"> 
     <meta charset="utf-8">
   </head>
   <body>
+    {% if user.is_authenticated and user.is_superuser %}
     <div  id = "lodge_complaint_button">
        <button class="btn btn-outline-success my-2 my-sm-0"><a href="/view/">View Main</a>
        </button>
     </div>
+    {% endif %}
 
     <h1>SERVICE DIRECTORY</h1>
+    {% if user.is_authenticated and user.is_superuser %}
+        {% for complaint in all_sd %}
+        <article class="media content-section">
+        <div class="media-body">
+          <div class="article-metadata">
+            <medium class="text-primary"><b>Building</b> : {{ complaint.building_id.building_name }}</br></medium>
+            <medium class="text-primary"><b>Name</b> : {{ complaint.name }}</br></medium>
+            <medium class="text-muted"><b>Profession</b> : {{ complaint.profession }}</br></medium>
+            <medium class="text-muted"><b>Phone Number</b> : {{ complaint.phone_no }}</br></medium>
+          </div>
+        </div>
+        </article>
+      {% endfor %}
+
+      
+    {% else %}
         {% for complaint in flat_model %}
         <article class="media content-section">
         <div class="media-body">
@@ -26,6 +44,7 @@
         </div>
         </article>
       {% endfor %}
+    {% endif %}
   </body>
 </html>
 {% endblock %}
