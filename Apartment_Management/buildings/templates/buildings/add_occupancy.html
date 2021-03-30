@@ -15,8 +15,8 @@
 <form method="POST">
   {% csrf_token %}
         <article class="media content-section">
-         <label for="flat">Choose Flat:   </label>
-          <select name="flat" id="flat">
+             <label for="flat">Choose Flat:   </label>
+          <select name="flat" id="flat" type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown dropright">
         {% for complaint in flat %}
             <option value="{{complaint.flat_id}}">{{complaint.flat_no}}</option>
         {% endfor %}
@@ -25,7 +25,7 @@
 
         <article class="media content-section">
          <label for="user1">Choose User:   </label>
-          <select name="user1" id="user1">
+          <select name="user1" id="user1" type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown dropright">
       {% for complaint in user1 %}
             <option value="{{complaint}}">{{complaint.first_name}}</option>
       {% endfor %}
@@ -33,14 +33,14 @@
         </article>
         
         <article class="media content-section">
-         <label for="flat">Seelct Ownership:   </label>
-          <select name="ownership" id="ownership">
+         <label for="flat">Select Ownership:   </label>
+          <select name="ownership" id="ownership" type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown dropright">
             <option value="Tenant">Tenant</option>
             <option value="Owner">Owner</option>
           </select> 
         </article>
 
-    <input type="submit" value="Enter"/>
+    <input type="submit" class="btn btn-outline-success" value="Enter"/>
   </form>
 {% endif %}
   </body>

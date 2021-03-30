@@ -20,7 +20,7 @@
         <article class="media content-section">
         <div class="media-body">
           <div class="article-metadata">
-            <input type="radio" id="o" name="o" value='{{ complaint.pk }}'>
+            <input type="radio" id="o" name="o" value='{{ complaint.pk }}' checked>
               <label for="o">Flat: {{ complaint.flat_id }}</label><br>
               <label for="o">User: {{ complaint.user_id }}</label><br>
               <label for="o">Ownership: {{ complaint.ownership }}</label><br>
@@ -31,7 +31,7 @@
       {% endfor %}
 
       {% if user.is_authenticated and user.is_superuser %}
-        <input type="submit" value="Enter"/>
+        <input type="submit" class="btn btn-outline-success" value="Enter"/>
       {% endif %}
   </form>
 
