@@ -2,7 +2,7 @@
 
 ##### Step1: Clone repo.
 ```
-https://github.com/anmolharsh/Apartment-Management-DBMS_1.git
+git clone https://github.com/anmolharsh/Apartment-Management-DBMS_1.git
 cd Apartment-Management-DBMS_1
 ```
 
