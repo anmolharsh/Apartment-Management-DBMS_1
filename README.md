@@ -2,8 +2,8 @@
 
 ##### Step1: Clone repo.
 ```
+https://github.com/anmolharsh/Apartment-Management-DBMS_1.git
 cd Apartment-Management-DBMS_1
-git clone https://github.com/ajaykumarr123/shop_management 
 ```
 
 ##### Step2: Installation
